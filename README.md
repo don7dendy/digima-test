@@ -70,7 +70,7 @@ The main purpose of deploying is to generate apk android.
 1. open the project folder in terminal
 2. go to android folder
 3. type 'gradlew AssembleRelease'
-4. find the apk inside myproject\android\app\build\outputs\apk\debug
+4. find the apk inside myproject\android\app\build\outputs\apk\release\app-release.apk
 
 ## 📄 License
 
