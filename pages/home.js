@@ -38,36 +38,36 @@ class Home extends Component {
         'Accept' : 'application/json',
         'Content-Type' : 'multipart/form-data',
       },
-      body : formData
-    }).then((response)=> response.json())
+      body : formData                                                                                //push form data yang telah dibuat
+    }).then((response)=> response.json())                                                            //rubah response ke json agar lebih mudah identifikasi
     .then((responsejson)=>{
-      if (responsejson.status=='200'){
+      if (responsejson.status=='200'){                                                                //jika email & password benar
         AsyncStorage.setItem('user',JSON.stringify({
-          token:responsejson.data.user.token
+          token:responsejson.data.user.token                                                          //simpan data token dengan async storage
         })); 
-        this.setState({isloading:false});
-        Alert.alert('Login Berhasil','Selamat Bergabung' + ' ' + responsejson.data.firstname + '!');
-        this.props.navigation.navigate('Login');
+        this.setState({isloading:false});                                                             //menghilangkan loading
+        Alert.alert('Login Berhasil','Selamat Bergabung' + ' ' + responsejson.data.firstname + '!');                          //pop up login berhasil
+        this.props.navigation.navigate('Login');                                                      //memuat halaman selanjutnya
       } else {
-        this.setState({isloading:false});
-        Alert.alert('Login Gagal','Username/password salah');
+        this.setState({isloading:false});                                                             //menghilangkan loading
+        Alert.alert('Login Gagal','Username/password salah');                                         //jika email & password benar
       }
     }).catch((error)=>{
-      Alert.alert(error);
+      Alert.alert(error);                                                                             //menjelaskan error
     }); 
   });
       }
     }
 
     render() {
-                    if (this.state.isloading){
+                    if (this.state.isloading){                                                        //memuat tampilan loading
                         return (
                           <View style={styles.page}>
                             <ActivityIndicator size={'large'}/>
                           <Text style={styles.loading}>Loading...</Text>
                           </View>
                         )
-                      } else {
+                      } else {                                                                         //memuat tampilan selain loading
                     return (
                         <SafeAreaView>
                     <View style={styles.page}>
@@ -75,16 +75,16 @@ class Home extends Component {
                         placeholder='Email'
                         inputMode='email'
                         placeholderTextColor={'#000'}
-                        onChangeText = {TextInputValue => this.setState({name : TextInputValue})}
+                        onChangeText = {TextInputValue => this.setState({name : TextInputValue})}        //merubah state name
                         style={styles.inputText}/>
                         <TextInput
                         placeholder='Password'
                         secureTextEntry={true}
                         placeholderTextColor={'#000'}
-                        onChangeText = {TextInputValue => this.setState({pass : TextInputValue})}
+                        onChangeText = {TextInputValue => this.setState({pass : TextInputValue})}       //merubah state pass
                         style={styles.inputText}/>
                         <TouchableOpacity 
-                        onPress={()=> this.login()} 
+                        onPress={()=> this.login()}                                                     //menjalankan fungsi login
                         style={styles.btnLogin}>
                           <Text style={{color:'#fff'}}>Login</Text>
                           </TouchableOpacity>

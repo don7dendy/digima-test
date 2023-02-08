@@ -18,7 +18,7 @@ class Login extends Component {
           const value = await AsyncStorage.getItem('user');
           if (value !== null) {
             let datajson = JSON.parse(value);
-            this.state.tokenUser         = datajson.token;
+            this.state.tokenUser         = datajson.token;              //memanggil data token di async storage
           } 
           } catch (error) { 
             console.log(error);
@@ -28,12 +28,12 @@ class Login extends Component {
       headers : {
         'Accept' : 'application/json',
         'Content-Type' : 'application/x-www-form-urlencoded',
-        'TOKEN' : this.state.tokenUser
+        'TOKEN' : this.state.tokenUser                                  //menambahkan token yang sudah dimuat
       },
           }).then((response)=> response.json())
           .then((responseJson)=>{
              this.setState({
-               isLoading : false,
+               isLoading : false,                                       //membuat loading berhenti
                dataSources : responseJson.data.journeys,
              })
              console.log('data',this.state.dataSources);
@@ -43,7 +43,7 @@ class Login extends Component {
       }
 
     render() {
-      if (this.state.isLoading){
+      if (this.state.isLoading){                                         //tampilan loading
                         return (
                           <View style={styles.loading}>
                             <ActivityIndicator size={'large'} />
@@ -51,7 +51,7 @@ class Login extends Component {
                           </View>
                         )
                       } else {
-                        let datasubtopik = this.state.dataSources.map((val,key)=>{
+                        let datasubtopik = this.state.dataSources.map((val,key)=>{              //memuat array dalam data journey
                           return <View key={key}>
                                       <Image source={{uri : val.thumbnail}} style={styles.image}/>
                                     <DataTable>
