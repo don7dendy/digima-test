@@ -63,13 +63,14 @@ React Native is developed and supported by many companies and individual core co
 
 1. Pull the repository in branch: master
 2. Run npm install inside the repository
+3. Run react-native run-android
 
 ## 🚀 How to Deploy
 
 The main purpose of deploying is to generate apk android.
 1. open the project folder in terminal
 2. go to android folder
-3. type 'gradlew AssembleRelease'
+3. type 'gradlew assembleRelease'
 4. find the apk inside myproject\android\app\build\outputs\apk\release\app-release.apk
 
 ## 📄 License
